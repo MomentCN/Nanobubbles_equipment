@@ -1,0 +1,38 @@
+#电机指令定义
+'''
+命令格式：
+命令头：
+一个字节
+0x55
+命令内容：
+一个字节
+0x01:向上移动1mm
+0x02:向下移动1mm
+0x03:向上移动1cm
+0x04:向下移动1cm
+0x05:开始运动
+0x06:中止运动
+0x07:应答命令
+0x08:电机编号命令
+运动参数：
+运动速度：一个字节
+运动次数：两个字节
+长运动距离：一个字节
+短运动距离：一个字节
+'''
+class Command:
+    #电机控制指令
+    up1mm = (0x55, 0x01)
+    down1mm = (0x55, 0x02)
+    up1cm = (0x55, 0x03)
+    down1cm = (0x55, 0x04)
+    start_stepper = [0x55, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00]
+    stop_stepper = (0x55, 0x06)
+    reply = (0x55, 0x07) 
+    stepperNo = [0x55, 0x08, 0x01]
+    getremaintimes = (0x55, 0x09) 
+    #屏幕控制指令
+    screen_order_end = (0xff, 0xff, 0xff)
+    to_page_order_error = 'page order_error'
+    to_page_run_stepper = 'page run_stepper'
+    to_page_running_state = 'page running_state'
